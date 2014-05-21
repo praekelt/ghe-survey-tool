@@ -41,7 +41,7 @@ describe("app", function() {
                     .input('2')
                     .check.interaction({
                         state: 'states:end_no_consent',
-                        reply: 'Thank you, you will not receive any survey questions.'
+                        reply: 'Thank you for reaching out to Yegna Listener Group Registration Survey'
                     })
                     .check.reply.ends_session()
                     .run();
@@ -49,36 +49,9 @@ describe("app", function() {
         });
 
         describe("3. when the user gives consent to receive survey questions", function() {
-            it("should ask if they are older than 18", function() {
-                return tester
-                    .setup.user.state('states:start')
-                    .input('1')
-                    .check.interaction({
-                        state: 'states:age',
-                        reply: 'Are you older than 18 years? Text 1 for Yes and 2 for No\n1. Yes\n2. No'
-                    })
-                    .run();
-            });
-        });
-
-        describe("4. when the user is younger than 18", function() {
-            it("should thank them and end registration process", function() {
-                return tester
-                    .setup.user.state('states:age')
-                    .input('2')
-                    .check.interaction({
-                        state: 'states:end_under_age',
-                        reply: 'Thank you. Unfortunately, you are too young to partake in the surveys.'
-                    })
-                    .check.reply.ends_session()
-                    .run();
-            });
-        });
-
-        describe("5. when the user is older than 18", function() {
             it("should ask for their preferred language", function() {
                 return tester
-                    .setup.user.state('states:age')
+                    .setup.user.state('states:start')
                     .input('1')
                     .check.interaction({
                         state: 'states:language',
@@ -88,11 +61,24 @@ describe("app", function() {
             });
         });
 
-        describe("6. after the user has selected their language", function() {
-            it("should ask for their gender", function() {
+        describe("4. after the user has selected their language", function() {
+            it("should ask about their age", function() {
                 return tester
                     .setup.user.state('states:language')
-                    .input('3')
+                    .input('1')
+                    .check.interaction({
+                        state: 'states:age',
+                        reply: 'Are you older than 18 years? Text 1 for Yes and 2 for No\n1. Yes\n2. No'
+                    })
+                    .run();
+            });
+        });
+
+        describe("5. after the user has indicated their age", function() {
+            it("should ask for their gender", function() {
+                return tester
+                    .setup.user.state('states:age')
+                    .input('2')
                     .check.interaction({
                         state: 'states:gender',
                         reply: 'What is your gender? Test 1 for Male and 2 for Female\n1. Male\n2. Female'
@@ -101,7 +87,7 @@ describe("app", function() {
             });
         });
 
-        describe("7. after the user has selected their gender", function() {
+        describe("6. after the user has selected their gender", function() {
             it("should ask for their Listener Group Name", function() {
                 return tester
                     .setup.user.state('states:gender')
@@ -114,27 +100,14 @@ describe("app", function() {
             });
         });
 
-        describe("8. after the user has entered their LG name", function() {
-            it("should ask for their group type", function() {
-                return tester
-                    .setup.user.state('states:group_name')
-                    .input('group name')
-                    .check.interaction({
-                        state: 'states:group_type',
-                        reply: 'What is your group type? Text 1 for Mixed group, 2 or Girls only and 3 for Gatekeepers\n1. Mixed\n2. Girls Only\n3. Gatekeepers'
-                    })
-                    .run();
-            });
-        });
-
-        describe("9. after the user has entered their group type", function() {
+        describe("7. after the user has entered their group name", function() {
             it("should thank them and end registration process", function() {
                 return tester
-                    .setup.user.state('states:group_type')
+                    .setup.user.state('states:group_name')
                     .input('2')
                     .check.interaction({
                         state: 'states:end_registered',
-                        reply: 'Thank you. You are now registered to receive survey questions.'
+                        reply: 'Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.'
                     })
                     .check.reply.ends_session()
                     .run();
