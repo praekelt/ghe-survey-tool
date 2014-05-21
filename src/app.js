@@ -12,17 +12,13 @@ go.app = function() {
         var $ = self.$;
 
         self.states.add('states:start', function(name) {
-            return new ChoiceState(name, {
+            return new FreeText(name, {
                 question: $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No'),
 
-                choices: [
-                    new Choice('yes', 'Yes'),
-                    new Choice('no', 'No')],
-
-                next: function(choice) {
+                next: function(content) {
                     return {
-                        yes: 'states:age',
-                        no: 'states:end_no_consent'
+                        '1': 'states:language',
+                        '2': 'states:end_no_consent'
                     } [choice.value];
                 }
             });

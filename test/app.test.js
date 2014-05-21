@@ -28,8 +28,7 @@ describe("app", function() {
                     .start()
                     .check.interaction({
                         state: 'states:start',
-                        reply: 'In order to continue receiving survey questions please Text 1 for Yes and 2 for No\n1. Yes\n2. No'
-                        //askmike: using choice state generates new lines
+                        reply: 'In order to continue receiving survey questions please Text 1 for Yes and 2 for No'
                     })
                     .run();
             });
