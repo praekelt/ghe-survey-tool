@@ -14,6 +14,7 @@ describe("app", function() {
             tester = new AppTester(app);
 
             tester
+                .setup.char_limit(160)
                 .setup.config.app({
                     name: 'test_app'
                 })
@@ -22,7 +23,7 @@ describe("app", function() {
                 });
         });
 
-        describe("1. when the user starts a session", function() {
+        describe("S0a. when the user starts a session", function() {
             it("should ask if they want to receive survey questions", function() {
                 return tester
                     .start()
@@ -34,7 +35,7 @@ describe("app", function() {
             });
         });
 
-        describe("2. when the user chooses not to receive survey questions", function() {
+        describe("S1a. when the user chooses not to receive survey questions", function() {
             it("should thank them and end registration process", function() {
                 return tester
                     .setup.user.state('states:start')
@@ -48,46 +49,72 @@ describe("app", function() {
             });
         });
 
-        describe("3. when the user gives consent to receive survey questions", function() {
+        describe("S1b. when the user gives consent to receive survey questions", function() {
             it("should ask for their preferred language", function() {
                 return tester
                     .setup.user.state('states:start')
                     .input('1')
                     .check.interaction({
                         state: 'states:language',
-                        reply: 'What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ\n1. English\n2. Amharic\n3. ኣማርኛ'
+                        reply: 'What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ'
                     })
                     .run();
             });
         });
 
-        describe("4. after the user has selected their language", function() {
+        describe("S2a. after the user has selected their language", function() {
             it("should ask about their age", function() {
                 return tester
                     .setup.user.state('states:language')
                     .input('1')
                     .check.interaction({
                         state: 'states:age',
-                        reply: 'Are you older than 18 years? Text 1 for Yes and 2 for No\n1. Yes\n2. No'
+                        reply: 'Are you older than 18 years? Text 1 for Yes and 2 for No'
                     })
                     .run();
             });
         });
 
-        describe("5. after the user has indicated their age", function() {
+        describe("S2b. if the user's language choice does not validate", function() {
+            it("should ask for their language again", function() {
+                return tester
+                    .setup.user.state('states:language')
+                    .input('english')
+                    .check.interaction({
+                        state: 'states:language',
+                        reply: 'Sorry, your choice was not valid. Preferred language? For English text the number 1, for Amharic text the number 2, for ኣማርኛ text the number 3'
+                    })
+                    .run();
+            });
+        });
+
+        describe("S3a. after the user has indicated their age", function() {
             it("should ask for their gender", function() {
                 return tester
                     .setup.user.state('states:age')
                     .input('2')
                     .check.interaction({
                         state: 'states:gender',
-                        reply: 'What is your gender? Test 1 for Male and 2 for Female\n1. Male\n2. Female'
+                        reply: 'What is your gender? Text 1 for Male and 2 for Female'
                     })
                     .run();
             });
         });
 
-        describe("6. after the user has selected their gender", function() {
+        describe("S3b. if the user's age choice does not validate", function() {
+            it("should ask for their age again", function() {
+                return tester
+                    .setup.user.state('states:age')
+                    .input('3')
+                    .check.interaction({
+                        state: 'states:age',
+                        reply: 'Sorry, your choice was not valid. 18 or older? Text the number 1. Younger than 18? Text the number 2.'
+                    })
+                    .run();
+            });
+        });
+
+        describe("S4a. after the user has selected their gender", function() {
             it("should ask for their Listener Group Name", function() {
                 return tester
                     .setup.user.state('states:gender')
@@ -100,11 +127,24 @@ describe("app", function() {
             });
         });
 
-        describe("7. after the user has entered their group name", function() {
+        describe("S4b. if the user's gender choice does not validate", function() {
+            it("should ask for their gender again", function() {
+                return tester
+                    .setup.user.state('states:gender')
+                    .input('3')
+                    .check.interaction({
+                        state: 'states:gender',
+                        reply: 'Sorry, your choice was not valid. Are you male? Text the number 1. Are you female? Text the number 2'
+                    })
+                    .run();
+            });
+        });
+
+        describe("S5a. after the user has entered their group name", function() {
             it("should thank them and end registration process", function() {
                 return tester
                     .setup.user.state('states:group_name')
-                    .input('2')
+                    .input('35')
                     .check.interaction({
                         state: 'states:end_registered',
                         reply: 'Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.'
@@ -113,6 +153,18 @@ describe("app", function() {
                     .run();
             });
         });
-        
+
+        describe("S5b. if the user's group name choice does not validate", function() {
+            it("should ask for their group name again", function() {
+                return tester
+                    .setup.user.state('states:group_name')
+                    .input('36')
+                    .check.interaction({
+                        state: 'states:group_name',
+                        reply: 'Sorry, your choice was not valid. Please enter your Listener Group Name (number) again'
+                    })
+                    .run();
+            });
+        });
     });
 });

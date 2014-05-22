@@ -1,8 +1,7 @@
 go.app = function() {
     var vumigo = require('vumigo_v02');
+    var _ = require('lodash');
     var App = vumigo.App;
-    var Choice = vumigo.states.Choice;
-    var ChoiceState = vumigo.states.ChoiceState;
     var EndState = vumigo.states.EndState;
     var FreeText = vumigo.states.FreeText;
 
@@ -11,65 +10,151 @@ go.app = function() {
         App.call(self, 'states:start');
         var $ = self.$;
 
-        self.states.add('states:start', function(name) {
+        // S1
+        self.states.add('states:start', function(name, opts) {
+            var valid = ['1', '2'];
+
+            console.log(opts);
+
+            var error = $('Sorry, your choice was not valid. Would you like to receive survey questions? For Yes text the number 1, for No text the number 2');
+
+            var question;
+            if (!opts.retry) {
+                question = $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
+            } else {
+                question = error;
+            }
+
             return new FreeText(name, {
-                question: $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No'),
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
 
                 next: function(content) {
                     return {
                         '1': 'states:language',
                         '2': 'states:end_no_consent'
-                    } [choice.value];
+                    } [content.trim()];
                 }
             });
         });
 
-        self.states.add('states:language', function(name) {
-            return new ChoiceState(name, {
-                question: $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ'),
+        // S2
+        self.states.add('states:language', function(name, opts) {
+            var valid = ['1', '2', '3'];
 
-                choices: [
-                    new Choice('english', 'English'),
-                    new Choice('amharic', 'Amharic'),
-                    new Choice('ኣማርኛ', 'ኣማርኛ')],
+            console.log(opts);
 
-                next: function(choice) {
+            var error = $('Sorry, your choice was not valid. Preferred language? For English text the number 1, for Amharic text the number 2, for ኣማርኛ text the number 3');
+
+            var question;
+            if (!opts.retry) {
+                question = $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
                     return 'states:age';
                 }
             });
         });
 
-        self.states.add('states:age', function(name) {
-            return new ChoiceState(name, {
-                question: $('Are you older than 18 years? Text 1 for Yes and 2 for No'),
+        // S3
+        self.states.add('states:age', function(name, opts) {
+            var valid = ['1', '2'];
 
-                choices: [
-                    new Choice('yes', 'Yes'),
-                    new Choice('no', 'No')],
+            var error = $('Sorry, your choice was not valid. 18 or older? Text the number 1. Younger than 18? Text the number 2.');
 
-                next: function(choice) {
+            var question;
+            if (!opts.retry) {
+                question = $('Are you older than 18 years? Text 1 for Yes and 2 for No');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
                     return 'states:gender';
                 }
             });
         });
 
-        self.states.add('states:gender', function(name) {
-            return new ChoiceState(name, {
-                question: $('What is your gender? Test 1 for Male and 2 for Female'),
+        // S4
+        self.states.add('states:gender', function(name, opts) {
+            var valid = ['1', '2'];
 
-                choices: [
-                    new Choice('male', 'Male'),
-                    new Choice('female', 'Female')],
+            var error = $('Sorry, your choice was not valid. Are you male? Text the number 1. Are you female? Text the number 2');
 
-                next: function(choice) {
+            var question;
+            if (!opts.retry) {
+                question = $('What is your gender? Text 1 for Male and 2 for Female');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
                     return 'states:group_name';
                 }
             });
         });
 
-        self.states.add('states:group_name', function(name) {
+        // S5
+        self.states.add('states:group_name', function(name, opts) {
+            var num_listener_groups = 35;
+            var valid = [];
+
+            for (var i = 1; i <= num_listener_groups; i++) {
+                valid.push(i.toString());
+            }
+            
+            var error = $('Sorry, your choice was not valid. Please enter your Listener Group Name (number) again');
+
+            var question;
+            if (!opts.retry) {
+                question = $('Please enter your Listener Group Name');
+            } else {
+                question = error;
+            }
+
             return new FreeText(name, {
-                question: $('Please enter your Listener Group Name'),
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
 
                 next: function(content) {
                     return 'states:end_registered';
