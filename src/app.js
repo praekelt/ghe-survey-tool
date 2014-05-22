@@ -17,13 +17,8 @@ go.app = function() {
 
                 next: function(content) {
                     return {
-<<<<<<< HEAD
                         '1': 'states:language',
                         '2': 'states:end_no_consent'
-=======
-                        yes: 'states:language',
-                        no: 'states:end_no_consent'
->>>>>>> feature/issue-1-update-registration-flow-to-latest-sow
                     } [choice.value];
                 }
             });
