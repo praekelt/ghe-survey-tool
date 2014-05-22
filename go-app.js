@@ -11,6 +11,7 @@ go.app = function() {
 
     var GoApp = App.extend(function(self) {
         App.call(self, 'states:start');
+        // troubleshoot: It seems like running this App.call causes opts = undefined.
         var $ = self.$;
 
         // S1
@@ -18,6 +19,7 @@ go.app = function() {
             var valid = ['1', '2'];
 
             console.log(opts);
+            // troubleshoot: logs 'undefined'
 
             var error = $('Sorry, your choice was not valid. Would you like to receive survey questions? For Yes text the number 1, for No text the number 2');
 
@@ -51,6 +53,7 @@ go.app = function() {
             var valid = ['1', '2', '3'];
 
             console.log(opts);
+            // troubleshoot: logs '{}'
 
             var error = $('Sorry, your choice was not valid. Preferred language? For English text the number 1, for Amharic text the number 2, for ኣማርኛ text the number 3');
 
