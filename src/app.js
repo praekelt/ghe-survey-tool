@@ -18,7 +18,7 @@ go.app = function() {
             console.log(opts);
             // troubleshoot: logs 'undefined'
 
-            var error = $('Sorry, your choice was not valid. Would you like to receive survey questions? For Yes text the number 1, for No text the number 2');
+            var error = $('Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
 
             var question;
             if (!opts.retry) {
@@ -52,7 +52,7 @@ go.app = function() {
             console.log(opts);
             // troubleshoot: logs '{}', which is what we want (also works for following states)
 
-            var error = $('Sorry, your choice was not valid. Preferred language? For English text the number 1, for Amharic text the number 2, for ኣማርኛ text the number 3');
+            var error = $('Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
 
             var question;
             if (!opts.retry) {
@@ -80,7 +80,7 @@ go.app = function() {
         self.states.add('states:age', function(name, opts) {
             var valid = ['1', '2'];
 
-            var error = $('Sorry, your choice was not valid. 18 or older? Text the number 1. Younger than 18? Text the number 2.');
+            var error = $('Sorry, your choice was not valid. Are you older than 18 years? Text 1 for Yes and 2 for No');
 
             var question;
             if (!opts.retry) {
@@ -108,7 +108,7 @@ go.app = function() {
         self.states.add('states:gender', function(name, opts) {
             var valid = ['1', '2'];
 
-            var error = $('Sorry, your choice was not valid. Are you male? Text the number 1. Are you female? Text the number 2');
+            var error = $('Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 for Female');
 
             var question;
             if (!opts.retry) {
@@ -141,7 +141,7 @@ go.app = function() {
                 valid.push(i.toString());
             }
             
-            var error = $('Sorry, your choice was not valid. Please enter your Listener Group Name (number) again');
+            var error = $('Sorry, your choice was not valid. Please enter your Listener Group Name');
 
             var question;
             if (!opts.retry) {
