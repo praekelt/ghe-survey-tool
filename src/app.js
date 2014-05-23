@@ -8,15 +8,11 @@ go.app = function() {
 
     var GoApp = App.extend(function(self) {
         App.call(self, 'states:start');
-        // troubleshoot: It seems like running this App.call causes opts = undefined.
         var $ = self.$;
 
         // S1
         self.states.add('states:start', function(name, opts) {
             var valid = ['1', '2'];
-
-            console.log(opts);
-            // troubleshoot: logs 'undefined'
 
             var error = $('Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
 
@@ -48,9 +44,6 @@ go.app = function() {
         // S2
         self.states.add('states:language', function(name, opts) {
             var valid = ['1', '2', '3'];
-
-            console.log(opts);
-            // troubleshoot: logs '{}', which is what we want (also works for following states)
 
             var error = $('Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
 
