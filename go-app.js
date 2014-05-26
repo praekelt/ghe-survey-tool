@@ -13,6 +13,15 @@ go.app = function() {
         App.call(self, 'states:start');
         var $ = self.$;
 
+        self.init = function() {
+            return self.im.contacts
+                .for_user()
+                .then(function(user_contact) {
+                   self.contact = user_contact;
+                });
+        };
+
+
         // S1
         self.states.add('states:start', function(name, opts) {
             var valid = ['1', '2'];
@@ -67,7 +76,10 @@ go.app = function() {
                 },
 
                 next: function(content) {
-                    return 'states:age';
+                    return self.im.user.set_lang(content)
+                        .then(function() {
+                            return 'states:age';
+                        });
                 }
             });
         });
@@ -123,13 +135,13 @@ go.app = function() {
                 },
 
                 next: function(content) {
-                    return 'states:group_name';
+                    return 'states:group_id';
                 }
             });
         });
 
         // S5
-        self.states.add('states:group_name', function(name, opts) {
+        self.states.add('states:group_id', function(name, opts) {
             var num_listener_groups = _.size(self.im.config.group_id); // better than hardcoding, but can fall over if a group is deleted
             var valid = [];
 
@@ -156,7 +168,21 @@ go.app = function() {
                 },
 
                 next: function(content) {
-                    return 'states:end_registered';
+                    // set contact answers as extras
+                    self.contact.extra.user_language = self.im.user.answers['states:language'];
+                    self.contact.extra.user_age = self.im.user.answers['states:age'];
+                    self.contact.extra.user_gender = self.im.user.answers['states:gender'];
+                    self.contact.extra.group_id = self.im.user.answers['states:group_id'];
+
+                    // look up group info and set against contact
+                    self.contact.extra.group_type = self.im.config.group_id[content].group_type;
+                    self.contact.extra.group_name = self.im.config.group_id[content].group_name;
+                    self.contact.extra.urban_rural = self.im.config.group_id[content].urban_rural;
+
+                    return self.im.contacts.save(self.contact)
+                        .then(function() {
+                            return 'states:end_registered';
+                        });
                 }
             });
         });

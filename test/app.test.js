@@ -1,5 +1,7 @@
 var vumigo = require('vumigo_v02');
 var fixtures = require('./fixtures');
+var _ = require('lodash');
+var assert = require('assert');
 var AppTester = vumigo.AppTester;
 
 
@@ -18,7 +20,7 @@ describe("app", function() {
                 .setup.config.app({
                     name: 'test_app',
                     channel: '8558',
-                    group_id: 
+                    "group_id": 
                         {
                         '1': {
                             'group_name': 'Mesale',
@@ -139,7 +141,7 @@ describe("app", function() {
                     .setup.user.state('states:gender')
                     .input('2')
                     .check.interaction({
-                        state: 'states:group_name',
+                        state: 'states:group_id',
                         reply: 'Please enter your Listener Group Name'
                     })
                     .run();
@@ -160,26 +162,49 @@ describe("app", function() {
         });
 
         describe("S5a. after the user has entered their group name", function() {
-            it("should thank them and end registration process", function() {
+            it("should save their contact information & exit", function() {
                 return tester
-                    .setup.user.state('states:group_name')
+                    .setup(function(api) {
+                        api.contacts.add( {
+                            msisdn: '+271'
+                        });
+                    })
+                    .setup.user.addr('+271')
+                    .setup.user.answers({
+                        'states:language': '2',    // amharic
+                        'states:age': '2',         // over 18
+                        'states:gender': '1'       // male
+                    })
+                    .setup.user.state('states:group_id')
                     .input('1')
                     .check.interaction({
                         state: 'states:end_registered',
                         reply: 'Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.'
+                    })
+                    .check(function(api) {
+                        var contact = _.find(api.contacts.store, {
+                          msisdn: '+271'
+                        });
+                        assert.equal(contact.extra.user_language, '2');
+                        assert.equal(contact.extra.user_age, '2');
+                        assert.equal(contact.extra.user_gender, '1');
+                        assert.equal(contact.extra.group_id, '1');
+                        assert.equal(contact.extra.group_type, 'mixed');
+                        assert.equal(contact.extra.group_name, 'Mesale');
+                        assert.equal(contact.extra.urban_rural, 'urban');
                     })
                     .check.reply.ends_session()
                     .run();
             });
         });
 
-        describe("S5b. if the user's group name choice does not validate", function() {
+        describe("S5b. if the user's group name(id) choice does not validate", function() {
             it("should ask for their group name again", function() {
                 return tester
-                    .setup.user.state('states:group_name')
+                    .setup.user.state('states:group_id')
                     .input('not a name')
                     .check.interaction({
-                        state: 'states:group_name',
+                        state: 'states:group_id',
                         reply: 'Sorry, your choice was not valid. Please enter your Listener Group Name'
                     })
                     .run();
