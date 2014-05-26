@@ -1,0 +1,21 @@
+{
+    "name": "app",
+    "channel": "8558#prd",
+    "group_id": {
+        "1": {
+            "group_name": "Mesale",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+        },
+        "2": {
+            "group_name": "Ladies First",
+            "urban_rural": "rural",
+            "group_type": "girls"
+        },
+        "3": {
+            "group_name": "Made up",
+            "urban_rural": "urban",
+            "group_type": "gatekeepers"
+        }    
+    } // data needs adding from excel sheets - just for example
+}
