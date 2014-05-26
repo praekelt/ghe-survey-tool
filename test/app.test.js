@@ -16,7 +16,26 @@ describe("app", function() {
             tester
                 .setup.char_limit(160)
                 .setup.config.app({
-                    name: 'test_app'
+                    name: 'test_app',
+                    channel: '8558',
+                    group_id: 
+                        {
+                        '1': {
+                            'group_name': 'Mesale',
+                            'urban_rural': 'urban',
+                            'group_type': 'mixed'
+                            },
+                        '2': {
+                            'group_name': 'Ladies First',
+                            'urban_rural': 'rural',
+                            'group_type': 'girls'
+                            },
+                        '3': {
+                            'group_name': 'Made up',
+                            'urban_rural': 'urban',
+                            'group_type': 'gatekeepers'
+                            }    
+                        }
                 })
                 .setup(function(api) {
                     fixtures().forEach(api.http.fixtures.add);
@@ -144,7 +163,7 @@ describe("app", function() {
             it("should thank them and end registration process", function() {
                 return tester
                     .setup.user.state('states:group_name')
-                    .input('35')
+                    .input('1')
                     .check.interaction({
                         state: 'states:end_registered',
                         reply: 'Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.'
@@ -158,7 +177,7 @@ describe("app", function() {
             it("should ask for their group name again", function() {
                 return tester
                     .setup.user.state('states:group_name')
-                    .input('36')
+                    .input('not a name')
                     .check.interaction({
                         state: 'states:group_name',
                         reply: 'Sorry, your choice was not valid. Please enter your Listener Group Name'

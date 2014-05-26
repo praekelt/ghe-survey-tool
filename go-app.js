@@ -130,13 +130,13 @@ go.app = function() {
 
         // S5
         self.states.add('states:group_name', function(name, opts) {
-            var num_listener_groups = 35;
+            var num_listener_groups = _.size(self.im.config.group_id); // better than hardcoding, but can fall over if a group is deleted
             var valid = [];
 
             for (var i = 1; i <= num_listener_groups; i++) {
                 valid.push(i.toString());
             }
-            
+
             var error = $('Sorry, your choice was not valid. Please enter your Listener Group Name');
 
             var question;
