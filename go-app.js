@@ -168,23 +168,62 @@ go.app = function() {
                 },
 
                 next: function(content) {
-                    // set contact answers as extras
+                    // set answers against contact extras
                     self.contact.extra.user_language = self.im.user.answers['states:language'];
                     self.contact.extra.user_age = self.im.user.answers['states:age'];
                     self.contact.extra.user_gender = self.im.user.answers['states:gender'];
                     self.contact.extra.group_id = self.im.user.answers['states:group_id'];
 
-                    // look up group info and set against contact
+                    // look up group info and set against contact extras
                     self.contact.extra.group_type = self.im.config.group_id[content].group_type;
                     self.contact.extra.group_name = self.im.config.group_id[content].group_name;
                     self.contact.extra.urban_rural = self.im.config.group_id[content].urban_rural;
 
                     return self.im.contacts.save(self.contact)
                         .then(function() {
+                            return self.im.groups.get(self.contact.extra.group_type, {create: true})
+                                .then(function(group) {
+                                    if(_.isUndefined(group.users)) {
+                                        group.users = [];
+                                    }
+                                    var users = group.users;
+                                    users.push(self.contact.msisdn);
+                                    group.users = users;
+                                    console.log('11111111111111111');
+                                    console.log(group);
+                                    console.log('22222222222222222');
+                                    console.log(self.im.api.groups.store);
+                                    return self.im.groups.save(group) // this doesn't seem to do anything!!
+                                    // for debugging
+                                        .then(function() {
+                                            self.im.groups.get('mixed')
+                                            .then(function(blah) {
+                                                console.log('3333333333333333');
+                                                console.log(blah);
+                                                console.log('4444444444444444');
+                                                console.log(self.im.api.groups.store);
+                                            });
+                                        });
+                                    // end debugging
+                                });
+                        })
+                        .then(function() {
+                            return self.im.groups.get('registered', {create: true})
+                                .then(function(group) {
+                                    if(_.isUndefined(group.users)) {
+                                        group.users = [];
+                                    }
+                                    var users = group.users;
+                                    users.push(self.contact.msisdn);
+                                    group.users = users;
+                                    return self.im.groups.save(group); // this doesn't seem to do anything!!
+                                });
+                        })
+                        .then(function() {
                             return 'states:end_registered';
                         });
                 }
-            });
+            }); 
         });
 
         // End State 1 - no consent

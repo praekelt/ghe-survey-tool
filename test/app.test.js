@@ -3,6 +3,7 @@ var fixtures = require('./fixtures');
 var _ = require('lodash');
 var assert = require('assert');
 var AppTester = vumigo.AppTester;
+var GroupStore = vumigo.contacts.api.GroupStore;
 
 
 describe("app", function() {
@@ -12,14 +13,14 @@ describe("app", function() {
 
         beforeEach(function() {
             app = new go.app.GoApp();
-
+            groups = new GroupStore();
             tester = new AppTester(app);
 
             tester
                 .setup.char_limit(160)
                 .setup.config.app({
-                    name: 'test_app',
-                    channel: '8558',
+                    "name": 'test_app',
+                    "channel": '8558',
                     "group_id": 
                         {
                         '1': {
@@ -162,11 +163,21 @@ describe("app", function() {
         });
 
         describe("S5a. after the user has entered their group name", function() {
-            it("should save their contact information & exit", function() {
+            it("should save their contact information, add them to groups, exit", function() {
                 return tester
                     .setup(function(api) {
                         api.contacts.add( {
                             msisdn: '+271'
+                        });
+                        api.groups.add( {
+                                // key: 'g_mixed',
+                                name: 'mixed',
+                                users: ['p1']
+                        });
+                        api.groups.add( {
+                                // key: 'g_registered',
+                                name: 'registered',
+                                users: ['p1', 'p2']
                         });
                     })
                     .setup.user.addr('+271')
@@ -193,10 +204,19 @@ describe("app", function() {
                         assert.equal(contact.extra.group_name, 'Mesale');
                         assert.equal(contact.extra.urban_rural, 'urban');
                     })
+                    .check(function(api) {
+                        var group_mixed = _.find(api.groups.store, {name: 'mixed'});
+                        var group_registered = _.find(api.groups.store, {name: 'registered'});
+                        assert.deepEqual(group_mixed.users, [ 'p1', '+271' ]);
+                        assert.deepEqual(group_registered.users, ['p1', 'p2', '+271']);
+                    })
                     .check.reply.ends_session()
                     .run();
             });
         });
+
+        // we need another test here that is similar to S5a above but uses a group_type that doesn't exist in the store yet to test {create: true}
+
 
         describe("S5b. if the user's group name(id) choice does not validate", function() {
             it("should ask for their group name again", function() {

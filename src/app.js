@@ -178,10 +178,49 @@ go.app = function() {
 
                     return self.im.contacts.save(self.contact)
                         .then(function() {
+                            return self.im.groups.get(self.contact.extra.group_type, {create: true})
+                                .then(function(group) {
+                                    if(_.isUndefined(group.users)) {
+                                        group.users = [];
+                                    }
+                                    var users = group.users;
+                                    users.push(self.contact.msisdn);
+                                    group.users = users;
+                                    console.log('11111111111111111');
+                                    console.log(group);
+                                    console.log('22222222222222222');
+                                    console.log(self.im.api.groups.store);
+                                    return self.im.groups.save(group) // this doesn't seem to do anything, perhaps crappy groupstore setup?
+                                    // for debugging
+                                        .then(function() {
+                                            self.im.groups.get('mixed')
+                                            .then(function(blah) {
+                                                console.log('3333333333333333');
+                                                console.log(blah);
+                                                console.log('4444444444444444');
+                                                console.log(self.im.api.groups.store);
+                                            });
+                                        });
+                                    // end debugging
+                                });
+                        })
+                        .then(function() {
+                            return self.im.groups.get('registered', {create: true})
+                                .then(function(group) {
+                                    if(_.isUndefined(group.users)) {
+                                        group.users = [];
+                                    }
+                                    var users = group.users;
+                                    users.push(self.contact.msisdn);
+                                    group.users = users;
+                                    return self.im.groups.save(group); // this doesn't seem to do anything!!
+                                });
+                        })
+                        .then(function() {
                             return 'states:end_registered';
                         });
                 }
-            });
+            }); 
         });
 
         // End State 1 - no consent
