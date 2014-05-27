@@ -1,6 +1,6 @@
 {
     "name": "app",
-    "channel": "8558#prd",
+    "channel": "8558#qa",
     "group_id": {
         "1": {
             "group_name": "Mesale",
