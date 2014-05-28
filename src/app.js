@@ -54,6 +54,12 @@ go.app = function() {
         self.states.add('states:language', function(name, opts) {
             var valid = ['1', '2', '3'];
 
+            var lang_map = {
+                '1': 'en',
+                '2': 'am1',
+                '3': 'am2'
+            };
+
             var error = $('Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
 
             var question;
@@ -73,7 +79,7 @@ go.app = function() {
                 },
 
                 next: function(content) {
-                    return self.im.user.set_lang(content)
+                    return self.im.user.set_lang(lang_map[content])
                         .then(function() {
                             return 'states:age';
                         });
