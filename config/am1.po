@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2014-05-22 12:46:+0200\n"
+"Project-Id-Version: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-05-27 10:01+0530\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: am\n"
+
+#: go-app.js:24
+msgid ""
+"Sorry, your choice was not valid. In order to continue receiving survey "
+"questions please Text 1 for Yes and 2 for No"
+msgstr ""
+"Yekerta Merchawote tekekel aydelem tenatawi teyakewochen magegnet meketel "
+"kefelegu leawo 1 leay degmo 2 yechanu"
+
+#: go-app.js:28
+msgid ""
+"In order to continue receiving survey questions please Text 1 for Yes and 2 "
+"for No"
+msgstr ""
+"Tenatwi teyakewoch magegnet meketel kefelegu leawo 1 leay degmo 2 yechanu"
+
+#: go-app.js:58
+msgid ""
+"Sorry, your choice was not valid. What is your preferred language? Text 1 "
+"for English, 2 for Amharic and 3 for ኣማርኛ"
+msgstr ""
+"Yekerta merchawot tekekel aydelem ye quanqua merchawot menden new? Le "
+"Engilizegna 1 le Amaregna degmo 2 yechanu"
+
+#: go-app.js:62
+msgid ""
+"What is your preferred language? Text 1 for English, 2 for Amharic and 3 for "
+"ኣማርኛ"
+msgstr ""
+"Yequanqua merchawot menden new?  Le Engilizegna 1 le Amaregna degmo 2 yechanu"
+
+#: go-app.js:86
+msgid ""
+"Sorry, your choice was not valid. Are you older than 18 years? Text 1 for "
+"Yes and 2 for No"
+msgstr ""
+"Yekerta merchawote tekekel aydelem edmewot ke18 amet belay new? Leawo 1 leay "
+"degmo 2 yechanu"
+
+#: go-app.js:90
+msgid "Are you older than 18 years? Text 1 for Yes and 2 for No"
+msgstr "Edmewot k18 amet belay new? Leawo 1 leay degmo 2 yechanu"
+
+#: go-app.js:114
+msgid ""
+"Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 "
+"for Female"
+msgstr ""
+"Yekerta merchawot tekekel aydelem tsotawot menden new? Le wend 1 le set "
+"degmo 2 yechanu"
+
+#: go-app.js:118
+msgid "What is your gender? Text 1 for Male and 2 for Female"
+msgstr "Tsotawot menden new? Le wend 1 le set degmo 2 yechanu"
+
+#: go-app.js:147
+msgid "Sorry, your choice was not valid. Please enter your Listener Group Name"
+msgstr "Yekerta merchawot tekekel aydelem yeadamach budenewoten sem yasgebu"
+
+#: go-app.js:151
+msgid "Please enter your Listener Group Name"
+msgstr "Ebakewot yeadamach budenewoten sem yasgebu"
+
+#: go-app.js:174
+msgid "Thank you for reaching out to Yegna Listener Group Registration Survey"
+msgstr "Le Yegna yeadamach buden tenat lmemezgeb selemetu enamesegenalen"
+
+#: go-app.js:182
+msgid ""
+"Thank you! You are now registered as a member of the Yegna Listener Group. "
+"Please share your feedback with us every week. Your input is very important "
+"to us."
+msgstr ""
+"Ye yegna yeadamachoch buden abal bemehon seletemezegebu "
+"enamesegenalenHasabochachehu legna betam tekqmi selehonu beyesamentu "
+"aseteyayetachehun akaflun"

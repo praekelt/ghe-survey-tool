@@ -1,0 +1,63 @@
+{
+    "": {
+        "pot-creation-date": "2014-05-22 12:46:+0200",
+        "project-id-version": "",
+        "language-team": "LANGUAGE <LL@li.org>",
+        "mime-version": "1.0",
+        "content-type": "text/plain; charset=UTF-8",
+        "content-transfer-encoding": "8bit",
+        "po-revision-date": "2014-05-27 09:57+0530",
+        "last-translator": "",
+        "x-generator": "Poedit 1.6.5",
+        "plural-forms": "nplurals=2; plural=(n != 1);",
+        "language": "am_ET"
+    },
+    "Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No": [
+        null,
+        "ይቅርታ ምርጫዎት ትክክል አይደለም። ጥናታዊ ጥያቄዎችን ማግኘት መቀጠል ከፈለጉ ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+    ],
+    "In order to continue receiving survey questions please Text 1 for Yes and 2 for No": [
+        null,
+        "ጥናታዊ ጥያቄዎችን ማግኘት መቀጠል ከፈለጉ፣ ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+    ],
+    "Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ": [
+        null,
+        "ይቅርታ ምርጫዎት ትክክል አይደለም። የቋንቋ ምርጫዎት ምንድን ነው? ለእንጊሊዘኛ 1 ለአማርኛ ደግሞ 2 ይጫኑ"
+    ],
+    "What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ": [
+        null,
+        "የቋንቋ ምርጫዎት ምንድን ነው? ለእንጊሊዘኛ 1 ለአማርኛ ደግሞ 2 ይጫኑ"
+    ],
+    "Sorry, your choice was not valid. Are you older than 18 years? Text 1 for Yes and 2 for No": [
+        null,
+        "ይቅርታ ምርጫዎት ትክክል አይደለም። እድሜዎት ከ 18 ዓመት በላይ ነው? ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+    ],
+    "Are you older than 18 years? Text 1 for Yes and 2 for No": [
+        null,
+        "እድሜዎት ከ 18 ዓመት በላይ ነው? ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+    ],
+    "Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 for Female": [
+        null,
+        "ይቅርታ ምርጫዎት ትክክል አይደለም። ጾታዎት ምንድን ነው? ለወነድ 1 ለሴት ደግሞ 2 ይጫኑ"
+    ],
+    "What is your gender? Text 1 for Male and 2 for Female": [
+        null,
+        "ጾታዎት ምንድን ነው? ለወንድ 1 ለሴት ደግሞ 2 ይጫኑ"
+    ],
+    "Sorry, your choice was not valid. Please enter your Listener Group Name": [
+        null,
+        "ይቅርታ ምርጫዎት ትክክል አይደለም። የአዳማጭ ቡድነዎትን ስም ያስገቡ"
+    ],
+    "Please enter your Listener Group Name": [
+        null,
+        "እባከዎት የአዳማጭ ቡድነዎትን ስም ያስገቡ"
+    ],
+    "Thank you for reaching out to Yegna Listener Group Registration Survey": [
+        null,
+        "ለየኛ የአዳማጮች ቡድን ጥናት ለመመዝገብ ስለመጡ እናመሰግናለን"
+    ],
+    "Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.": [
+        null,
+        "(SMS 1) የየኛ የአዳማጮች ቡድን አባል በመሆን ስለተመዘገቡ እናመሰግናለን(SMS 2) ሃሳቦቻችሁ ለእኛ በጣም ጠቃሚ ስለሆኑ በየሳምንቱ አስተያየታችሁን አካፍሉን"
+    ]
+}

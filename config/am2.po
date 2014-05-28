@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2014-05-22 12:46:+0200\n"
+"Project-Id-Version: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-05-27 09:57+0530\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: am_ET\n"
+
+#: go-app.js:24
+msgid ""
+"Sorry, your choice was not valid. In order to continue receiving survey "
+"questions please Text 1 for Yes and 2 for No"
+msgstr "ይቅርታ ምርጫዎት ትክክል አይደለም። ጥናታዊ ጥያቄዎችን ማግኘት መቀጠል ከፈለጉ ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+
+#: go-app.js:28
+msgid ""
+"In order to continue receiving survey questions please Text 1 for Yes and 2 "
+"for No"
+msgstr "ጥናታዊ ጥያቄዎችን ማግኘት መቀጠል ከፈለጉ፣ ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+
+#: go-app.js:58
+msgid ""
+"Sorry, your choice was not valid. What is your preferred language? Text 1 "
+"for English, 2 for Amharic and 3 for ኣማርኛ"
+msgstr "ይቅርታ ምርጫዎት ትክክል አይደለም። የቋንቋ ምርጫዎት ምንድን ነው? ለእንጊሊዘኛ 1 ለአማርኛ ደግሞ 2 ይጫኑ"
+
+#: go-app.js:62
+msgid ""
+"What is your preferred language? Text 1 for English, 2 for Amharic and 3 for "
+"ኣማርኛ"
+msgstr "የቋንቋ ምርጫዎት ምንድን ነው? ለእንጊሊዘኛ 1 ለአማርኛ ደግሞ 2 ይጫኑ"
+
+#: go-app.js:86
+msgid ""
+"Sorry, your choice was not valid. Are you older than 18 years? Text 1 for "
+"Yes and 2 for No"
+msgstr "ይቅርታ ምርጫዎት ትክክል አይደለም። እድሜዎት ከ 18 ዓመት በላይ ነው? ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+
+#: go-app.js:90
+msgid "Are you older than 18 years? Text 1 for Yes and 2 for No"
+msgstr "እድሜዎት ከ 18 ዓመት በላይ ነው? ለአዎ 1 ለአይ ደግሞ 2 ይጫኑ"
+
+#: go-app.js:114
+msgid ""
+"Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 "
+"for Female"
+msgstr "ይቅርታ ምርጫዎት ትክክል አይደለም። ጾታዎት ምንድን ነው? ለወነድ 1 ለሴት ደግሞ 2 ይጫኑ"
+
+#: go-app.js:118
+msgid "What is your gender? Text 1 for Male and 2 for Female"
+msgstr "ጾታዎት ምንድን ነው? ለወንድ 1 ለሴት ደግሞ 2 ይጫኑ"
+
+#: go-app.js:147
+msgid "Sorry, your choice was not valid. Please enter your Listener Group Name"
+msgstr "ይቅርታ ምርጫዎት ትክክል አይደለም። የአዳማጭ ቡድነዎትን ስም ያስገቡ"
+
+#: go-app.js:151
+msgid "Please enter your Listener Group Name"
+msgstr "እባከዎት የአዳማጭ ቡድነዎትን ስም ያስገቡ"
+
+#: go-app.js:174
+msgid "Thank you for reaching out to Yegna Listener Group Registration Survey"
+msgstr "ለየኛ የአዳማጮች ቡድን ጥናት ለመመዝገብ ስለመጡ እናመሰግናለን"
+
+#: go-app.js:182
+msgid ""
+"Thank you! You are now registered as a member of the Yegna Listener Group. "
+"Please share your feedback with us every week. Your input is very important "
+"to us."
+msgstr ""
+"(SMS 1) የየኛ የአዳማጮች ቡድን አባል በመሆን ስለተመዘገቡ እናመሰግናለን(SMS 2) ሃሳቦቻችሁ ለእኛ በጣም ጠቃሚ "
+"ስለሆኑ በየሳምንቱ አስተያየታችሁን አካፍሉን"

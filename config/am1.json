@@ -1,0 +1,63 @@
+{
+    "": {
+        "pot-creation-date": "2014-05-22 12:46:+0200",
+        "project-id-version": "",
+        "language-team": "LANGUAGE <LL@li.org>",
+        "mime-version": "1.0",
+        "content-type": "text/plain; charset=UTF-8",
+        "content-transfer-encoding": "8bit",
+        "po-revision-date": "2014-05-27 10:01+0530",
+        "last-translator": "",
+        "x-generator": "Poedit 1.6.5",
+        "plural-forms": "nplurals=2; plural=(n > 1);",
+        "language": "am"
+    },
+    "Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No": [
+        null,
+        "Yekerta Merchawote tekekel aydelem tenatawi teyakewochen magegnet meketel kefelegu leawo 1 leay degmo 2 yechanu"
+    ],
+    "In order to continue receiving survey questions please Text 1 for Yes and 2 for No": [
+        null,
+        "Tenatwi teyakewoch magegnet meketel kefelegu leawo 1 leay degmo 2 yechanu"
+    ],
+    "Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ": [
+        null,
+        "Yekerta merchawot tekekel aydelem ye quanqua merchawot menden new? Le Engilizegna 1 le Amaregna degmo 2 yechanu"
+    ],
+    "What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ": [
+        null,
+        "Yequanqua merchawot menden new?  Le Engilizegna 1 le Amaregna degmo 2 yechanu"
+    ],
+    "Sorry, your choice was not valid. Are you older than 18 years? Text 1 for Yes and 2 for No": [
+        null,
+        "Yekerta merchawote tekekel aydelem edmewot ke18 amet belay new? Leawo 1 leay degmo 2 yechanu"
+    ],
+    "Are you older than 18 years? Text 1 for Yes and 2 for No": [
+        null,
+        "Edmewot k18 amet belay new? Leawo 1 leay degmo 2 yechanu"
+    ],
+    "Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 for Female": [
+        null,
+        "Yekerta merchawot tekekel aydelem tsotawot menden new? Le wend 1 le set degmo 2 yechanu"
+    ],
+    "What is your gender? Text 1 for Male and 2 for Female": [
+        null,
+        "Tsotawot menden new? Le wend 1 le set degmo 2 yechanu"
+    ],
+    "Sorry, your choice was not valid. Please enter your Listener Group Name": [
+        null,
+        "Yekerta merchawot tekekel aydelem yeadamach budenewoten sem yasgebu"
+    ],
+    "Please enter your Listener Group Name": [
+        null,
+        "Ebakewot yeadamach budenewoten sem yasgebu"
+    ],
+    "Thank you for reaching out to Yegna Listener Group Registration Survey": [
+        null,
+        "Le Yegna yeadamach buden tenat lmemezgeb selemetu enamesegenalen"
+    ],
+    "Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.": [
+        null,
+        "Ye yegna yeadamachoch buden abal bemehon seletemezegebu enamesegenalenHasabochachehu legna betam tekqmi selehonu beyesamentu aseteyayetachehun akaflun"
+    ]
+}
