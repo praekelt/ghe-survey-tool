@@ -170,14 +170,12 @@ describe("app", function() {
                             msisdn: '+271'
                         });
                         api.groups.add( {
-                                // key: 'g_mixed',
+                                key: 'mixed_key',
                                 name: 'mixed',
-                                users: ['p1']
                         });
                         api.groups.add( {
-                                // key: 'g_registered',
+                                key: 'registered_key',
                                 name: 'registered',
-                                users: ['p1', 'p2']
                         });
                     })
                     .setup.user.addr('+271')
@@ -203,20 +201,12 @@ describe("app", function() {
                         assert.equal(contact.extra.group_type, 'mixed');
                         assert.equal(contact.extra.group_name, 'Mesale');
                         assert.equal(contact.extra.urban_rural, 'urban');
-                    })
-                    .check(function(api) {
-                        var group_mixed = _.find(api.groups.store, {name: 'mixed'});
-                        var group_registered = _.find(api.groups.store, {name: 'registered'});
-                        assert.deepEqual(group_mixed.users, [ 'p1', '+271' ]);
-                        assert.deepEqual(group_registered.users, ['p1', 'p2', '+271']);
+                        assert.deepEqual(contact.groups, ['mixed_key', 'registered_key']);
                     })
                     .check.reply.ends_session()
                     .run();
             });
         });
-
-        // we need another test here that is similar to S5a above but uses a group_type that doesn't exist in the store yet to test {create: true}
-
 
         describe("S5b. if the user's group name(id) choice does not validate", function() {
             it("should ask for their group name again", function() {

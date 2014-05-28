@@ -179,7 +179,7 @@ go.app = function() {
                     return self.im.groups.get(self.contact.extra.group_type)
                         .then(function(group) {
                             self.contact.groups.push(group.key);
-                            return self.im.groups.get("Registered")
+                            return self.im.groups.get("registered")
                                 .then(function(reg_group){
                                     self.contact.groups.push(reg_group.key);
                                     return self.im.contacts.save(self.contact)

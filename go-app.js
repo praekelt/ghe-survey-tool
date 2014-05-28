@@ -179,48 +179,17 @@ go.app = function() {
                     self.contact.extra.group_name = self.im.config.group_id[content].group_name;
                     self.contact.extra.urban_rural = self.im.config.group_id[content].urban_rural;
 
-                    return self.im.contacts.save(self.contact)
-                        .then(function() {
-                            return self.im.groups.get(self.contact.extra.group_type, {create: true})
-                                .then(function(group) {
-                                    if(_.isUndefined(group.users)) {
-                                        group.users = [];
-                                    }
-                                    var users = group.users;
-                                    users.push(self.contact.msisdn);
-                                    group.users = users;
-                                    console.log('11111111111111111');
-                                    console.log(group);
-                                    console.log('22222222222222222');
-                                    console.log(self.im.api.groups.store);
-                                    return self.im.groups.save(group) // this doesn't seem to do anything!!
-                                    // for debugging
+                    return self.im.groups.get(self.contact.extra.group_type)
+                        .then(function(group) {
+                            self.contact.groups.push(group.key);
+                            return self.im.groups.get("registered")
+                                .then(function(reg_group){
+                                    self.contact.groups.push(reg_group.key);
+                                    return self.im.contacts.save(self.contact)
                                         .then(function() {
-                                            self.im.groups.get('mixed')
-                                            .then(function(blah) {
-                                                console.log('3333333333333333');
-                                                console.log(blah);
-                                                console.log('4444444444444444');
-                                                console.log(self.im.api.groups.store);
-                                            });
+                                            return 'states:end_registered';
                                         });
-                                    // end debugging
                                 });
-                        })
-                        .then(function() {
-                            return self.im.groups.get('registered', {create: true})
-                                .then(function(group) {
-                                    if(_.isUndefined(group.users)) {
-                                        group.users = [];
-                                    }
-                                    var users = group.users;
-                                    users.push(self.contact.msisdn);
-                                    group.users = users;
-                                    return self.im.groups.save(group); // this doesn't seem to do anything!!
-                                });
-                        })
-                        .then(function() {
-                            return 'states:end_registered';
                         });
                 }
             }); 
