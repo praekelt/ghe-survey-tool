@@ -3,7 +3,6 @@ var fixtures = require('./fixtures');
 var _ = require('lodash');
 var assert = require('assert');
 var AppTester = vumigo.AppTester;
-var GroupStore = vumigo.contacts.api.GroupStore;
 
 
 describe("app", function() {
@@ -13,7 +12,6 @@ describe("app", function() {
 
         beforeEach(function() {
             app = new go.app.GoApp();
-            groups = new GroupStore();
             tester = new AppTester(app);
 
             tester
