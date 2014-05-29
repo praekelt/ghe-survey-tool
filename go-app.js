@@ -27,13 +27,7 @@ go.app = function() {
             var valid = ['1', '2'];
 
             var error = $('Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
-
-            var question;
-            if (!opts.retry) {
-                question = $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
-            } else {
-                question = error;
-            }
+            var question = $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
 
             return new FreeText(name, {
                 question: question,
