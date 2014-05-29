@@ -3,9 +3,8 @@ go;
 
 go.app = function() {
     var vumigo = require('vumigo_v02');
+    var _ = require('lodash');
     var App = vumigo.App;
-    var Choice = vumigo.states.Choice;
-    var ChoiceState = vumigo.states.ChoiceState;
     var EndState = vumigo.states.EndState;
     var FreeText = vumigo.states.FreeText;
 
@@ -14,114 +13,206 @@ go.app = function() {
         App.call(self, 'states:start');
         var $ = self.$;
 
-        self.states.add('states:start', function(name) {
-            return new ChoiceState(name, {
-                question: $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No'),
+        self.init = function() {
+            return self.im.contacts
+                .for_user()
+                .then(function(user_contact) {
+                   self.contact = user_contact;
+                });
+        };
 
-                choices: [
-                    new Choice('yes', 'Yes'),
-                    new Choice('no', 'No')],
 
-                next: function(choice) {
+        // S1
+        self.states.add('states:start', function(name, opts) {
+            var valid = ['1', '2'];
+
+            var error = $('Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
+
+            var question;
+            if (!opts.retry) {
+                question = $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
                     return {
-                        yes: 'states:age',
-                        no: 'states:end_no_consent'
-                    } [choice.value];
+                        '1': 'states:language',
+                        '2': 'states:end_no_consent'
+                    } [content.trim()];
                 }
             });
         });
 
-        self.states.add('states:age', function(name) {
-            return new ChoiceState(name, {
-                question: $('Are you older than 18 years? Text 1 for Yes and 2 for No'),
+        // S2
+        self.states.add('states:language', function(name, opts) {
+            var valid = ['1', '2', '3'];
 
-                choices: [
-                    new Choice('yes', 'Yes'),
-                    new Choice('no', 'No')],
+            var lang_map = {
+                '1': 'en',
+                '2': 'am1',
+                '3': 'am2'
+            };
 
-                next: function(choice) {
-                    return {
-                        yes: 'states:language',
-                        no: 'states:end_under_age'
-                    } [choice.value];
+            var error = $('Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
+
+            var question;
+            if (!opts.retry) {
+                question = $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
+                    return self.im.user.set_lang(lang_map[content])
+                        .then(function() {
+                            return 'states:age';
+                        });
                 }
             });
         });
 
-        self.states.add('states:language', function(name) {
-            return new ChoiceState(name, {
-                question: $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ'),
+        // S3
+        self.states.add('states:age', function(name, opts) {
+            var valid = ['1', '2'];
 
-                choices: [
-                    new Choice('english', 'English'),
-                    new Choice('amharic', 'Amharic'),
-                    new Choice('ኣማርኛ', 'ኣማርኛ')],
+            var error = $('Sorry, your choice was not valid. Are you older than 18 years? Text 1 for Yes and 2 for No');
 
-                next: function(choice) {
+            var question;
+            if (!opts.retry) {
+                question = $('Are you older than 18 years? Text 1 for Yes and 2 for No');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
                     return 'states:gender';
                 }
             });
         });
 
-        self.states.add('states:gender', function(name) {
-            return new ChoiceState(name, {
-                question: $('What is your gender? Test 1 for Male and 2 for Female'),
+        // S4
+        self.states.add('states:gender', function(name, opts) {
+            var valid = ['1', '2'];
 
-                choices: [
-                    new Choice('male', 'Male'),
-                    new Choice('female', 'Female')],
+            var error = $('Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 for Female');
 
-                next: function(choice) {
-                    return 'states:group_name';
-                }
-            });
-        });
+            var question;
+            if (!opts.retry) {
+                question = $('What is your gender? Text 1 for Male and 2 for Female');
+            } else {
+                question = error;
+            }
 
-        self.states.add('states:group_name', function(name) {
             return new FreeText(name, {
-                question: $('Please enter your Listener Group Name'),
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
 
                 next: function(content) {
-                    return 'states:group_type';
+                    return 'states:group_id';
                 }
             });
         });
 
-        self.states.add('states:group_type', function(name) {
-            return new ChoiceState(name, {
-                question: $('What is your group type? Text 1 for Mixed group, 2 or Girls only and 3 for Gatekeepers'),
+        // S5
+        self.states.add('states:group_id', function(name, opts) {
+            var num_listener_groups = _.size(self.im.config.group_id); // better than hardcoding, but can fall over if a group is deleted
+            var valid = [];
 
-                choices: [
-                    new Choice('mixed', 'Mixed'),
-                    new Choice('girls_only', 'Girls Only'),
-                    new Choice('gatekeepers', 'Gatekeepers')],
+            for (var i = 1; i <= num_listener_groups; i++) {
+                valid.push(i.toString());
+            }
 
-                next: function(choice) {
-                    return 'states:end_registered';
+            var error = $('Sorry, your choice was not valid. Please enter your Listener Group Name');
+
+            var question;
+            if (!opts.retry) {
+                question = $('Please enter your Listener Group Name');
+            } else {
+                question = error;
+            }
+
+            return new FreeText(name, {
+                question: question,
+
+                check: function(content) {
+                    if (!_.contains(valid, content.trim())) {
+                        return error;
+                    }
+                },
+
+                next: function(content) {
+                    // set answers against contact extras
+                    self.contact.extra.user_language = self.im.user.answers['states:language'];
+                    self.contact.extra.user_age = self.im.user.answers['states:age'];
+                    self.contact.extra.user_gender = self.im.user.answers['states:gender'];
+                    self.contact.extra.group_id = self.im.user.answers['states:group_id'];
+
+                    // look up group info and set against contact extras
+                    self.contact.extra.group_type = self.im.config.group_id[content].group_type;
+                    self.contact.extra.group_name = self.im.config.group_id[content].group_name;
+                    self.contact.extra.urban_rural = self.im.config.group_id[content].urban_rural;
+
+                    return self.im.groups.get(self.contact.extra.group_type)
+                        .then(function(group) {
+                            self.contact.groups.push(group.key);
+                            return self.im.groups.get("registered")
+                                .then(function(reg_group){
+                                    self.contact.groups.push(reg_group.key);
+                                    return self.im.contacts.save(self.contact)
+                                        .then(function() {
+                                            return 'states:end_registered';
+                                        });
+                                });
+                        });
                 }
-            });
+            }); 
         });
 
         // End State 1 - no consent
         self.states.add('states:end_no_consent', function(name) {
             return new EndState(name, {
-                text: $('Thank you, you will not receive any survey questions.'),
+                text: $('Thank you for reaching out to Yegna Listener Group Registration Survey'),
                 next: 'states:start'
             });
         });
 
-        // End State 2 - age not 18
-        self.states.add('states:end_under_age', function(name) {
-            return new EndState(name, {
-                text: $('Thank you. Unfortunately, you are too young to partake in the surveys.'),
-                next: 'states:start'
-            });
-        });
-
-        // End State 3 - successful registration
+        // End State 2 - successful registration
         self.states.add('states:end_registered', function(name) {
             return new EndState(name, {
-                text: $('Thank you. You are now registered to receive survey questions.'),
+                text: $('Thank you! You are now registered as a member of the Yegna Listener Group. Please share your feedback with us every week. Your input is very important to us.'),
                 next: 'states:start'
             });
         });

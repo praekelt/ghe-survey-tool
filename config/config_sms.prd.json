@@ -1,0 +1,115 @@
+{
+    "name": "app",
+    "group_id": {
+        "1": {
+            "group_name": "Mesale",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "2": {
+            "group_name": "Endersalen",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "3": {
+            "group_name": "Kalina",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "4": {
+            "group_name": "Semun",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "5": {
+            "group_name": "Dimtsachin Yisema",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "6": {
+            "group_name": "Sebstopole",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "7": {
+            "group_name": "Ladies First",
+            "urban_rural": "rural",
+            "group_type": "girls"
+            },
+        "8": {
+            "group_name": "Ahun Naw Yetebaberut",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "9": {
+            "group_name": "Enchelalen",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "10": {
+            "group_name": "Egnam Endenante",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "11": {
+            "group_name": "Setoch Yegna",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "12": {
+            "group_name": "Yegna Guday",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "13": {
+            "group_name": "Yeju Midir",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "14": {
+            "group_name": "Yegna Andinet",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "15": {
+            "group_name": "Yegna Tinsae",
+            "urban_rural": "rural",
+            "group_type": "mixed"
+            },
+        "16": {
+            "group_name": "Egna Yegna",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "17": {
+            "group_name": "Birhan",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "18": {
+            "group_name": "Enehun Bale Edil",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "19": {
+            "group_name": "Selanchi",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "20": {
+            "group_name": "Fenot",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            },
+        "21": {
+            "group_name": "Netsebrak",
+            "urban_rural": "urban",
+            "group_type": "mixed"
+            },
+        "22": {
+            "group_name": "Gerji Lem high school",
+            "urban_rural": "urban",
+            "group_type": "girls"
+            }
+    }
+}
