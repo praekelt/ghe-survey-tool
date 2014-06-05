@@ -27,7 +27,13 @@ go.app = function() {
             var valid = ['1', '2'];
 
             var error = $('Sorry, your choice was not valid. In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
-            var question = $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
+
+            var question;
+            if (!opts.retry) {
+                question = $('In order to continue receiving survey questions please Text 1 for Yes and 2 for No');
+            } else {
+                question = error;
+            }
 
             return new FreeText(name, {
                 question: question,
@@ -58,8 +64,13 @@ go.app = function() {
             };
 
             var error = $('Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
-            var question = $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
 
+            var question;
+            if (!opts.retry) {
+                question = $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
+            } else {
+                question = error;
+            }
 
             return new FreeText(name, {
                 question: question,
@@ -84,7 +95,13 @@ go.app = function() {
             var valid = ['1', '2'];
 
             var error = $('Sorry, your choice was not valid. Are you older than 18 years? Text 1 for Yes and 2 for No');
-            var question = $('Are you older than 18 years? Text 1 for Yes and 2 for No');
+
+            var question;
+            if (!opts.retry) {
+                question = $('Are you older than 18 years? Text 1 for Yes and 2 for No');
+            } else {
+                question = error;
+            }
 
             return new FreeText(name, {
                 question: question,
@@ -106,7 +123,13 @@ go.app = function() {
             var valid = ['1', '2'];
 
             var error = $('Sorry, your choice was not valid. What is your gender? Text 1 for Male and 2 for Female');
-            var question = $('What is your gender? Text 1 for Male and 2 for Female');
+
+            var question;
+            if (!opts.retry) {
+                question = $('What is your gender? Text 1 for Male and 2 for Female');
+            } else {
+                question = error;
+            }
 
             return new FreeText(name, {
                 question: question,
@@ -133,7 +156,13 @@ go.app = function() {
             }
 
             var error = $('Sorry, your choice was not valid. Please enter your Listener Group Name');
-            var question = $('Please enter your Listener Group Name');
+
+            var question;
+            if (!opts.retry) {
+                question = $('Please enter your Listener Group Name');
+            } else {
+                question = error;
+            }
 
             return new FreeText(name, {
                 question: question,

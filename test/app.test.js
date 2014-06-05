@@ -34,7 +34,7 @@ describe("app", function() {
                         '3': {
                             'group_name': 'Made up',
                             'urban_rural': 'urban',
-                            'group_type': 'gatekeepers'
+                            'group_type': 'female gatekeepers'
                             }    
                         }
                 })
