@@ -60,7 +60,6 @@ go.app = function() {
             var error = $('Sorry, your choice was not valid. What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
             var question = $('What is your preferred language? Text 1 for English, 2 for Amharic and 3 for ኣማርኛ');
 
-
             return new FreeText(name, {
                 question: question,
 
