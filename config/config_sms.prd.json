@@ -114,57 +114,57 @@
         "23": {
             "group_name": "Chacha",
             "urban_rural": "rural",
-            "group_type": "female gatekeepers"
+            "group_type": "gatekeepers_girls"
         },
         "24": {
             "group_name": "Filega",
             "urban_rural": "rural",
-            "group_type": "female gatekeepers"
+            "group_type": "gatekeepers_girls"
         },
         "25": {
             "group_name": "Addis Tarik",
             "urban_rural": "rural",
-            "group_type": "female gatekeepers"
+            "group_type": "gatekeepers_girls"
         },
         "26": {
             "group_name": "Lisane Hewan",
             "urban_rural": "urban",
-            "group_type": "mixed gatekeepers"
+            "group_type": "gatekeepers_mixed"
         },
         "27": {
             "group_name": "Migbare Senay",
             "urban_rural": "urban",
-            "group_type": "mixed gatekeepers"
+            "group_type": "gatekeepers_mixed"
         },
         "28": {
             "group_name": "Addis Alem",
             "urban_rural": "rural",
-            "group_type": "female gatekeepers"
+            "group_type": "gatekeepers_girls"
         },
         "29": {
             "group_name": "Hibret",
             "urban_rural": "urban",
-            "group_type": "mixed gatekeepers"
+            "group_type": "gatekeepers_mixed"
         },
         "30": {
             "group_name": "Yiwsagi",
             "urban_rural": "urban",
-            "group_type": "mixed gatekeepers"
+            "group_type": "gatekeepers_mixed"
         },
         "31": {
             "group_name": "Arat Mekeraker",
             "urban_rural": "rural",
-            "group_type": "female gatekeepers"
+            "group_type": "gatekeepers_girls"
         },
         "32": {
             "group_name": "Cherkos",
             "urban_rural": "urban",
-            "group_type": "mixed gatekeepers"
+            "group_type": "gatekeepers_mixed"
         },
         "33": {
             "group_name": "Akaki",
             "urban_rural": "urban",
-            "group_type": "mixed gatekeepers"
+            "group_type": "gatekeepers_mixed"
         }
     }
 }
